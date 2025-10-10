@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mrm-advocates.netlify.app/sitemap.xml
