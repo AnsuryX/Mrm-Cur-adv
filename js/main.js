@@ -250,13 +250,8 @@ function initializeContactForm() {
             .then(response => response.json())
             .then(result => {
                 if (result.success) {
-                    showFormSuccess();
-                    contactForm.reset();
-                    
-                    // Hide success message after 5 seconds
-                    setTimeout(() => {
-                        hideFormMessages();
-                    }, 5000);
+                    // Redirect to thank you page on successful submission
+                    window.location.href = 'thank-you.html';
                 } else {
                     showFormError(result.error || 'Failed to submit form. Please try again.');
                 }
