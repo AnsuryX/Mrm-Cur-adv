@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navigation Functionality
     initializeNavigation();
     
+    // Hero Slider with Advanced Features
+    initializeHeroSlider();
+    
     // Testimonials Slider
     initializeTestimonials();
     
@@ -33,7 +36,247 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Loading Animation
     initializePageLoad();
+    
+    // Hero Particle Effects
+    initializeHeroParticles();
 });
+
+// ============================================
+// HERO SLIDER FUNCTIONALITY
+// ============================================
+function initializeHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const prevBtn = document.querySelector('.hero-prev');
+    const nextBtn = document.querySelector('.hero-next');
+    const dots = document.querySelectorAll('.hero-dot');
+    
+    if (slides.length === 0) return;
+    
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    let autoplayInterval;
+    let isTransitioning = false;
+    
+    // Function to show specific slide with fade effect
+    function showSlide(index, direction = 'next') {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        // Remove active from all slides
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Remove active from all dots
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+        
+        // Show current slide with animation
+        if (slides[index]) {
+            slides[index].classList.add('active');
+            
+            // Reset and trigger content animations
+            const content = slides[index].querySelector('.hero-content');
+            if (content) {
+                // Force reflow to restart animations
+                content.style.animation = 'none';
+                setTimeout(() => {
+                    content.style.animation = '';
+                }, 10);
+            }
+        }
+        
+        // Activate current dot
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
+        
+        currentSlide = index;
+        
+        // Reset transitioning flag after animation completes
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 1000);
+    }
+    
+    // Next slide function
+    function nextSlide() {
+        const nextIndex = (currentSlide + 1) % totalSlides;
+        showSlide(nextIndex, 'next');
+    }
+    
+    // Previous slide function
+    function prevSlide() {
+        const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(prevIndex, 'prev');
+    }
+    
+    // Start autoplay
+    function startAutoplay() {
+        stopAutoplay();
+        autoplayInterval = setInterval(nextSlide, 7000); // Change slide every 7 seconds
+    }
+    
+    // Stop autoplay
+    function stopAutoplay() {
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+        }
+    }
+    
+    // Event listeners for buttons
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoplay();
+            startAutoplay(); // Restart autoplay after manual interaction
+        });
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoplay();
+            startAutoplay();
+        });
+    }
+    
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            showSlide(index);
+            stopAutoplay();
+            startAutoplay();
+        });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+            stopAutoplay();
+            startAutoplay();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+            stopAutoplay();
+            startAutoplay();
+        }
+    });
+    
+    // Touch/Swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    const heroSlider = document.querySelector('.hero-slider');
+    if (heroSlider) {
+        heroSlider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        heroSlider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swiped left - next slide
+                    nextSlide();
+                } else {
+                    // Swiped right - prev slide
+                    prevSlide();
+                }
+                stopAutoplay();
+                startAutoplay();
+            }
+        }
+    }
+    
+    // Pause autoplay when tab is not visible
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            stopAutoplay();
+        } else {
+            startAutoplay();
+        }
+    });
+    
+    // Pause on hover
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', stopAutoplay);
+        heroSection.addEventListener('mouseleave', startAutoplay);
+    }
+    
+    // Initialize first slide and start autoplay
+    showSlide(0);
+    startAutoplay();
+}
+
+// ============================================
+// HERO PARTICLE EFFECTS
+// ============================================
+function initializeHeroParticles() {
+    const particleContainers = document.querySelectorAll('.hero-particles');
+    
+    particleContainers.forEach(container => {
+        // Create floating particles
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random positioning and animation
+            const size = Math.random() * 4 + 2;
+            const startX = Math.random() * 100;
+            const startY = Math.random() * 100;
+            const duration = Math.random() * 20 + 15;
+            const delay = Math.random() * 5;
+            
+            particle.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                background: rgba(197, 165, 114, ${Math.random() * 0.3 + 0.1});
+                border-radius: 50%;
+                left: ${startX}%;
+                top: ${startY}%;
+                animation: particleFloat ${duration}s ease-in-out ${delay}s infinite;
+                pointer-events: none;
+            `;
+            
+            container.appendChild(particle);
+        }
+    });
+    
+    // Add particle animation CSS if not already present
+    if (!document.getElementById('particle-styles')) {
+        const style = document.createElement('style');
+        style.id = 'particle-styles';
+        style.textContent = `
+            @keyframes particleFloat {
+                0%, 100% {
+                    transform: translate(0, 0) scale(1);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                50% {
+                    transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) scale(1.5);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
 
 // Navigation Functionality
 function initializeNavigation() {
