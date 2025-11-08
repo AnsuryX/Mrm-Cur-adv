@@ -70,7 +70,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </head>
 <body>
     <!-- Header & Navigation -->
-    <header class="absolute top-0 left-0 w-full z-10 py-6">
+    <header class="absolute top-0 left-0 w-full z-50 py-6">
         <div class="container mx-auto px-6 lg:px-8">
             <nav class="flex items-center justify-between">
                 <!-- Logo -->
@@ -99,7 +99,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button class="lg:hidden text-gray-900" id="mobile-menu-button" aria-label="Toggle mobile menu">
+                <button class="lg:hidden text-gray-900" id="mobile-menu-button" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
@@ -107,8 +107,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </nav>
 
             <!-- Mobile Menu (Hidden by default) -->
-            <div class="lg:hidden hidden" id="mobile-menu">
-                <div class="py-4 space-y-3">
+            <!-- changed to absolute so it overlays content, given a white bg and shadow for readability -->
+            <div class="lg:hidden hidden absolute left-0 top-full w-full bg-white shadow-lg border-t border-gray-100 z-50" id="mobile-menu">
+                <div class="py-4 space-y-3 container mx-auto px-6 lg:px-8">
                     <a href="aboutus.html" class="block text-gray-700 hover:text-accent transition-colors py-2">About Us</a>
                     <a href="services.html" class="block text-gray-700 hover:text-accent transition-colors py-2">Services</a>
                     <a href="services.html#cases" class="block text-gray-700 hover:text-accent transition-colors py-2">Cases</a>
@@ -125,15 +126,54 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </header>
 
-    <!-- Mobile Menu Toggle Script -->
+    <!-- Mobile Menu Toggle Script with slide animation, aria-expanded and scroll lock -->
     <script>
-        const _mobileBtn = document.getElementById('mobile-menu-button');
-        if (_mobileBtn) {
-            _mobileBtn.addEventListener('click', function() {
-                const menu = document.getElementById('mobile-menu');
-                if (menu) menu.classList.toggle('hidden');
+        (function(){
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            if (!btn || !menu) return;
+
+            // Ensure initial ARIA state
+            btn.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-hidden', 'true');
+
+            function openMenu(){
+                // remove hidden so it can animate
+                menu.classList.remove('hidden');
+                // ensure layout/paint then add open class
+                requestAnimationFrame(()=> menu.classList.add('menu-open'));
+                btn.setAttribute('aria-expanded','true');
+                menu.setAttribute('aria-hidden','false');
+                // lock page scroll
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu(){
+                // start closing animation
+                menu.classList.remove('menu-open');
+                btn.setAttribute('aria-expanded','false');
+                menu.setAttribute('aria-hidden','true');
+                // unlock scrolling immediately so user can scroll while animation completes
+                document.body.style.overflow = '';
+                // after transition, add hidden back to remove from flow
+                const onEnd = function(e){
+                    if (e.target !== menu) return;
+                    menu.classList.add('hidden');
+                    menu.removeEventListener('transitionend', onEnd);
+                };
+                menu.addEventListener('transitionend', onEnd);
+            }
+
+            btn.addEventListener('click', function(){
+                if (menu.classList.contains('hidden')) openMenu(); else closeMenu();
             });
-        }
+
+            // Close menu when a link inside is clicked (good for single-page UX)
+            menu.addEventListener('click', function(e){
+                const target = e.target.closest('a');
+                if (target) closeMenu();
+            });
+        })();
     </script>
 
     <!-- Hero Section (Tailwind + Custom) -->

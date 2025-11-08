@@ -289,6 +289,40 @@ p {
     transition: var(--transition-fast);
 }
 
+/* Mobile menu slide animation and visibility helpers
+   Use fixed positioning so menu is not clipped by page stacking/overflow
+   and sits below the header. Header z-index is increased below to keep
+   the toggle button interactive while the menu is open. */
+#mobile-menu {
+    position: fixed;
+    top: 72px; /* matches header height approximation; safe fallback */
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.33s ease, opacity 0.2s ease;
+    z-index: 1100;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* When `.menu-open` is applied we allow the menu to expand */
+#mobile-menu.menu-open {
+    max-height: calc(100vh - 72px);
+    opacity: 1;
+}
+
+/* Keep the header above the menu so the toggle remains clickable */
+header {
+    z-index: 1200;
+}
+
+/* Ensure menu is hidden on large screens via CSS as well */
+@media (min-width: 1024px) {
+    #mobile-menu { display: none !important; }
+}
+
 /* ============================================
    HERO SECTION WITH ADVANCED ANIMATIONS
    ============================================ */
