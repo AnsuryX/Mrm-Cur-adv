@@ -20,3 +20,19 @@ Thumbs.db
 *.swo
 *~
 
+# Local key files (private keys/backups)
+ansury
+ansury.pub
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build / coverage / caches
+dist/
+build/
+coverage/
+.cache/
+
