@@ -1,0 +1,97 @@
+/* Layout & Structure */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Page Structure */
+.page-section {
+    padding: 5rem 0;
+    margin-top: 4rem;
+}
+
+.page-header {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    background-color: #f8fafc;
+}
+
+/* Hero Sections */
+.hero-section {
+    position: relative;
+    padding: 8rem 0 4rem;
+    background-color: #f8fafc;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 4rem 0;
+}
+
+.content-section:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Cards & Grids */
+.card {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.grid {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile Navigation */
+@media (max-width: 1024px) {
+    [data-mobile-nav] {
+        background-color: #ffffff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 2rem;
+    }
+    
+    [data-mobile-nav] .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 3rem;
+    }
+}

@@ -1,4 +1,4 @@
-// MRM Advocates LLP - Premium JavaScript Functionality
+// Mohamed Rama Mursal LLP - Premium JavaScript Functionality
 // ================================================
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -11,10 +11,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Navigation Functionality
-    initializeNavigation();
+    const mobileMenuBtn = document.querySelector('[data-mobile-menu]');
+    const mobileMenu = document.querySelector('[data-mobile-nav]');
     
-    // Hero Slider with Advanced Features
-    initializeHeroSlider();
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+    
+    // Add background to navbar
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.classList.add('navbar-scrolled');
+    }
+    
+    // Add background to navbar immediately
+    document.querySelector('.navbar')?.classList.add('navbar-scrolled');
     
     // Testimonials Slider
     initializeTestimonials();
@@ -36,26 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Loading Animation
     initializePageLoad();
-    
-    // Hero Particle Effects
-    initializeHeroParticles();
 });
-
-// ============================================
-// HERO SLIDER FUNCTIONALITY
-// ============================================
-function initializeHeroSlider() {
-    const slides = document.querySelectorAll('.hero-slide');
-    const prevBtn = document.querySelector('.hero-prev');
-    const nextBtn = document.querySelector('.hero-next');
-    const dots = document.querySelectorAll('.hero-dot');
-    
-    if (slides.length === 0) return;
-    
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-    let autoplayInterval;
-    let isTransitioning = false;
     
     // Function to show specific slide with fade effect
     function showSlide(index, direction = 'next') {
@@ -482,21 +476,28 @@ function initializeContactForm() {
             submitButton.disabled = true;
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             
-            // Send data to Netlify function
-            fetch('/.netlify/functions/zoho-submit', {
+            // Send data to Formspree
+            // Use the provided Formspree endpoint and submit the original FormData
+            // Replace this endpoint variable if you change the Formspree form
+            const FORMSPREE_ENDPOINT = 'https://formspree.io/f/manlrprn';
+
+            fetch(FORMSPREE_ENDPOINT, {
                 method: 'POST',
+                body: formData,
                 headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
+                    'Accept': 'application/json'
+                }
             })
-            .then(response => response.json())
-            .then(result => {
-                if (result.success) {
+            .then(response => {
+                if (response.ok) {
                     // Redirect to thank you page on successful submission
                     window.location.href = 'thank-you.html';
                 } else {
-                    showFormError(result.error || 'Failed to submit form. Please try again.');
+                    return response.json().then(err => {
+                        throw new Error(err.error || 'Failed to submit form.');
+                    }).catch(() => {
+                        throw new Error('Failed to submit form.');
+                    });
                 }
             })
             .catch(error => {

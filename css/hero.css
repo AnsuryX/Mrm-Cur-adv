@@ -1,0 +1,137 @@
+/* Scoped hero styles for .new-hero
+   Keeps styling separate to avoid large changes to existing style.css
+*/
+
+.new-hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+.new-hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(10,12,20,0.55), rgba(10,12,20,0.55)), url('https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=1400&q=80');
+  background-size: cover;
+  background-position: center right;
+  filter: contrast(1.02) saturate(0.95);
+  z-index: 0;
+}
+
+.new-hero .hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 32px;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.new-hero .hero-left {
+  max-width: 780px;
+}
+
+.new-hero .eyebrow {
+  font-weight: 600;
+  color: #f5f5f5;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.new-hero .hero-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  line-height: 1.05;
+  margin: 0 0 18px 0;
+  color: #ffffff;
+}
+
+.new-hero .hero-lead {
+  color: rgba(255,255,255,0.9);
+  font-size: 16px;
+  margin-bottom: 22px;
+}
+
+.hero-ctas .btn {
+  margin-right: 12px;
+}
+
+.row-stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.row-stats .stat {
+  background: rgba(255,255,255,0.04);
+  padding: 12px 18px;
+  border-radius: 8px;
+  min-width: 110px;
+  text-align: left;
+}
+
+.row-stats .stat-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.row-stats .stat-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+}
+
+.hero-right .contact-card {
+  background: rgba(255,255,255,0.06);
+  padding: 22px;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(5,8,15,0.5);
+}
+
+.contact-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+}
+
+.card-lead {
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 16px;
+}
+
+.btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.card-contact {
+  margin-top: 16px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+}
+.card-contact .phone, .card-contact .email { margin-top: 8px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .new-hero .hero-inner { grid-template-columns: 1fr; padding: 60px 0; }
+  .hero-right { order: 2; }
+  .hero-left { order: 1; }
+  .new-hero .hero-headline { font-size: 32px; }
+  .row-stats { flex-wrap: wrap; }
+}
+
+@media (max-width: 520px) {
+  .new-hero .hero-headline { font-size: 26px; }
+  .row-stats .stat { min-width: 90px; padding: 10px 12px; }
+}

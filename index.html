@@ -12,46 +12,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
     
     <!-- Primary Meta Tags -->
-    <title>MRM Advocates LLP - Premier Legal Services in Kenya | Corporate Law, Litigation & Real Estate</title>
-    <meta name="title" content="MRM Advocates LLP - Premier Legal Services in Kenya | Corporate Law, Litigation & Real Estate">
-    <meta name="description" content="MRM Advocates LLP - Leading law firm in Kenya offering expert legal services in Corporate Law, Litigation, Real Estate, M&A, and Arbitration. Over 25 years of excellence with 1000+ successful cases.">
-    <meta name="keywords" content="MRM Advocates, Law Firm Kenya, Legal Services Kenya, Corporate Law Kenya, Litigation Lawyers, Real Estate Law, Mergers Acquisitions, Arbitration Kenya, Nairobi Lawyers, Best Law Firm Kenya, Commercial Disputes, Property Development, Legal Consultation Kenya">
-    <meta name="author" content="MRM Advocates LLP">
+    <title>Mohamed Rama Mursal LLP - Premier Legal Services in Kenya | Corporate Law, Litigation & Real Estate</title>
+    <meta name="title" content="Mohamed Rama Mursal LLP - Premier Legal Services in Kenya | Corporate Law, Litigation & Real Estate">
+    <meta name="description" content="Mohamed Rama Mursal LLP - Leading law firm in Kenya offering expert legal services in Corporate Law, Litigation, Real Estate, M&A, and Arbitration. Over 10 years of excellence with 120+ successful cases.">
+    <meta name="keywords" content="Mohamed Rama Mursal, Law Firm Kenya, Legal Services Kenya, Corporate Law Kenya, Litigation Lawyers, Real Estate Law, Mergers Acquisitions, Arbitration Kenya, Nairobi Lawyers, Best Law Firm Kenya, Commercial Disputes, Property Development, Legal Consultation Kenya">
+    <meta name="author" content="Mohamed Rama Mursal LLP">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
     <meta name="revisit-after" content="7 days">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mrm-advocates.netlify.app/">
-    <meta property="og:title" content="MRM Advocates LLP - Premier Legal Services in Kenya">
-    <meta property="og:description" content="Leading law firm in Kenya offering expert legal services in Corporate Law, Litigation, Real Estate, M&A, and Arbitration. Over 25 years of excellence.">
-    <meta property="og:image" content="https://mrm-advocates.netlify.app/assets/mrm-logo.png">
-    <meta property="og:site_name" content="MRM Advocates LLP">
-    <meta property="og:locale" content="en_KE">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://mrm-advocates.netlify.app/">
-    <meta property="twitter:title" content="MRM Advocates LLP - Premier Legal Services in Kenya">
-    <meta property="twitter:description" content="Leading law firm in Kenya offering expert legal services in Corporate Law, Litigation, Real Estate, M&A, and Arbitration. Over 25 years of excellence.">
-    <meta property="twitter:image" content="https://mrm-advocates.netlify.app/assets/mrm-logo.png">
-    
-    <!-- Geo Tags -->
-    <meta name="geo.region" content="KE">
-    <meta name="geo.placename" content="Nairobi">
-    <meta name="geo.position" content="-1.286389;36.817223">
-    <meta name="ICBM" content="-1.286389, 36.817223">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://mrm-advocates.netlify.app/">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: '#b88b4a',
+                    }
+                }
+            }
+        }
+    </script>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
@@ -63,188 +46,305 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="css/home.css">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mrm-advocates.netlify.app/">
+    <meta property="og:title" content="Mohamed Rama Mursal LLP - Premier Legal Services in Kenya">
+    <meta property="og:description" content="Leading law firm in Kenya offering expert legal services in Corporate Law, Litigation, Real Estate, M&A, and Arbitration. Over 10 years of excellence.">
+    <meta property="og:image" content="https://mrm-advocates.netlify.app/assets/mrm-logo.png">
+    <meta property="og:site_name" content="Mohamed Rama Mursal LLP">
+    <meta property="og:locale" content="en_KE">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mrm-advocates.netlify.app/">
+    <meta property="twitter:title" content="Mohamed Rama Mursal LLP - Premier Legal Services in Kenya">
+    <meta property="twitter:description" content="Leading law firm in Kenya offering expert legal services in Corporate Law, Litigation, Real Estate, M&A, and Arbitration. Over 10 years of excellence.">
+    <meta property="twitter:image" content="https://mrm-advocates.netlify.app/assets/mrm-logo.png">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    </head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="absolute top-0 left-0 w-full z-10 py-6">
+        <div class="container mx-auto px-6 lg:px-8">
+            <nav class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                    <img src="assets/mrm-logo.png" alt="MRM Logo" class="h-12 w-auto">
+                    <span>MRM <span class="text-accent">Advocates</span></span>
+                </a>
+                
+                <!-- Navigation Links (Desktop) -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="aboutus.html" class="text-gray-700 hover:text-accent transition-colors">About Us</a>
+                    <a href="services.html" class="text-gray-700 hover:text-accent transition-colors">Services</a>
+                    <a href="services.html#cases" class="text-gray-700 hover:text-accent transition-colors">Cases</a>
+                    <a href="services.html#practice" class="text-gray-700 hover:text-accent transition-colors">Practice</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-accent transition-colors">Contact</a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <a href="tel:+254702929018" class="text-gray-700 hover:text-accent transition-colors">
+                        <i class="fas fa-phone mr-2"></i>+254 702 929 018
+                    </a>
+                    <a href="contact.html" class="bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                        Consult Now
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-gray-900" id="mobile-menu-button" aria-label="Toggle mobile menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </nav>
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-523BT2ZS"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="assets/mrm-logo.png" alt="MRM Advocates Logo" class="logo-img">
-                <span class="logo-text">MRM Advocates</span>
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="services.html" class="nav-link">Services</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-                <a href="contact.html" class="nav-cta">Get Consultation</a>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <!-- Mobile Menu (Hidden by default) -->
+            <div class="lg:hidden hidden" id="mobile-menu">
+                <div class="py-4 space-y-3">
+                    <a href="aboutus.html" class="block text-gray-700 hover:text-accent transition-colors py-2">About Us</a>
+                    <a href="services.html" class="block text-gray-700 hover:text-accent transition-colors py-2">Services</a>
+                    <a href="services.html#cases" class="block text-gray-700 hover:text-accent transition-colors py-2">Cases</a>
+                    <a href="services.html#practice" class="block text-gray-700 hover:text-accent transition-colors py-2">Practice</a>
+                    <a href="contact.html" class="block text-gray-700 hover:text-accent transition-colors py-2">Contact</a>
+                    <a href="tel:+254702929018" class="block text-gray-700 hover:text-accent transition-colors py-2">
+                        <i class="fas fa-phone mr-2"></i>+254 702 929 018
+                    </a>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                        Consult Now
+                    </a>
+                </div>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section with Slider -->
-    <section class="hero">
-        <div class="hero-slider">
-            <!-- Slide 1 -->
-            <div class="hero-slide active">
-                <div class="hero-background">
-                    <div class="hero-particles"></div>
-                    <div class="hero-overlay"></div>
-                </div>
-                <div class="container">
-                    <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-                        <h1 class="hero-title">
-                            <span class="title-main animate-text">Excellence in Legal Representation</span>
-                            <span class="title-sub animate-text-delay">Protecting Your Rights, Securing Your Future</span>
-                        </h1>
-                        <p class="hero-description animate-fade-in">
-                            MRM Advocates LLP stands as Kenya's premier law firm, combining decades of legal expertise 
-                            with innovative solutions. We deliver exceptional results for individuals, corporations, 
-                            and institutions across diverse practice areas.
-                        </p>
-                        <div class="hero-buttons animate-slide-up">
-                            <a href="services.html" class="btn btn-primary btn-animated">Our Services</a>
-                            <a href="contact.html" class="btn btn-secondary btn-animated">Free Consultation</a>
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        const _mobileBtn = document.getElementById('mobile-menu-button');
+        if (_mobileBtn) {
+            _mobileBtn.addEventListener('click', function() {
+                const menu = document.getElementById('mobile-menu');
+                if (menu) menu.classList.toggle('hidden');
+            });
+        }
+    </script>
+
+    <!-- Hero Section (Tailwind + Custom) -->
+    <main class="relative overflow-hidden">
+        <section class="pt-32 pb-16 lg:pt-48 lg:pb-24 relative">
+            <!-- Decorative background elements -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -z-10"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -z-10"></div>
+            <div class="container mx-auto px-6 lg:px-8 grid lg:grid-cols-12 gap-8 items-center relative z-10">
+                
+                <!-- Hero Text Content -->
+                <div class="lg:col-span-5 text-center lg:text-left" data-aos="fade-right" data-aos-duration="800">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
+                        Unraveling Complexities.
+                        <span class="text-accent block mt-2">Together</span>
+                    </h1>
+                    <p class="mt-6 text-lg text-gray-600 leading-relaxed">
+                        At Mohamed Rama Mursal LLP, we transform legal complexities into strategic opportunities. Our seasoned team delivers exceptional, personalized legal services to protect and empower you.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="contact.html" class="bg-accent text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-accent/90 transition-all shadow-lg hover:shadow-xl">
+                            Book a Consultation
+                        </a>
+                        <a href="#services" class="group flex items-center justify-center text-gray-700 font-semibold text-lg">
+                            Explore Services
+                            <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                        </a>
+                    </div>
+
+                    <!-- Stats Section -->
+                    <div class="mt-12 lg:mt-16 flex justify-center lg:justify-start space-x-8">
+                        <div>
+                            <p class="text-4xl font-bold text-gray-900">10+</p>
+                            <p class="text-sm text-gray-500">Years Experience</p>
                         </div>
-                        <div class="hero-stats animate-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">25+</span>
-                                <span class="stat-label">Years Experience</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">1000+</span>
-                                <span class="stat-label">Cases Won</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">50+</span>
-                                <span class="stat-label">Corporate Clients</span>
-                            </div>
+                        <div>
+                            <p class="text-4xl font-bold text-gray-900">120+</p>
+                            <p class="text-sm text-gray-500">Cases Won</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-bold text-gray-900">6</p>
+                            <p class="text-sm text-gray-500">Expert Lawyers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image & Services -->
+                <div class="lg:col-span-7 mt-12 lg:mt-0 flex flex-col lg:flex-row items-center gap-8">
+                    
+                    <!-- Lady Justice Image with Enhanced Styling -->
+                    <div class="flex-shrink-0 w-full max-w-md lg:max-w-none lg:w-2/3 relative" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-accent/20 rounded-full blur-3xl opacity-60 animate-pulse"></div>
+                        <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-accent/15 rounded-full blur-3xl opacity-50"></div>
+                        <div class="relative z-10 transform hover:scale-[1.02] transition-transform duration-500">
+                            <img 
+                                src="assets/lady_statue-removebg-preview.png" 
+                                alt="Lady Justice Statue - Bronze sculpture symbolizing justice and law" 
+                                class="hero-statue-img rounded-2xl shadow-2xl object-contain h-[500px] lg:h-[650px] w-full bg-gradient-to-br from-gray-50 via-white to-gray-100 p-8"
+                                style="filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15));"
+                                onerror="console.error('Image failed to load:', this.src); this.src='assets/Design.jpeg';"
+                            >
+                        </div>
+                    </div>
+                    
+                    <!-- Services List Box -->
+                    <div class="w-full lg:w-1/3 bg-white p-8 rounded-2xl shadow-2xl border border-gray-100 hover:shadow-3xl transition-all duration-300" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                        <div class="flex items-center justify-between mb-6">
+                            <a href="services.html#corporate" class="service-icon-wrapper group" title="Corporate Law">
+                                <i class="fas fa-building"></i>
+                            </a>
+                            <a href="services.html#litigation" class="service-icon-wrapper group" title="Litigation">
+                                <i class="fas fa-gavel"></i>
+                            </a>
+                            <a href="services.html#real-estate" class="service-icon-wrapper group" title="Real Estate">
+                                <i class="fas fa-home"></i>
+                            </a>
+                        </div>
+                        <h3 class="font-bold text-gray-900 text-xl mb-4">Our Premier Services</h3>
+                        <nav>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="services.html#corporate" class="service-list-item group">
+                                        <span>Corporate & Commercial Law</span>
+                                        <i class="fas fa-arrow-right ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="services.html#litigation" class="service-list-item group">
+                                        <span>Litigation & Dispute Resolution</span>
+                                        <i class="fas fa-arrow-right ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="services.html#real-estate" class="service-list-item group">
+                                        <span>Real Estate & Property Law</span>
+                                        <i class="fas fa-arrow-right ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="services.html#employment" class="service-list-item group">
+                                        <span>Employment & Labor Law</span>
+                                        <i class="fas fa-arrow-right ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="services.html#criminal" class="service-list-item group">
+                                        <span>Criminal Defense</span>
+                                        <i class="fas fa-arrow-right ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="services.html#family" class="service-list-item group">
+                                        <span>Family Law</span>
+                                        <i class="fas fa-arrow-right ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <a href="services.html#practice-areas" class="text-accent font-semibold text-sm hover:text-accent/80 transition-colors flex items-center">
+                                View All Services
+                                <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <!-- Slide 2 -->
-            <div class="hero-slide">
-                <div class="hero-background hero-bg-2">
-                    <div class="hero-particles"></div>
-                    <div class="hero-overlay"></div>
-                </div>
-                <div class="container">
-                    <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-                        <h1 class="hero-title">
-                            <span class="title-main animate-text">Corporate & Commercial Excellence</span>
-                            <span class="title-sub animate-text-delay">Strategic Legal Solutions for Your Business</span>
-                        </h1>
-                        <p class="hero-description animate-fade-in">
-                            Navigate complex corporate landscapes with confidence. Our expert team provides comprehensive 
-                            legal guidance for mergers, acquisitions, compliance, and commercial transactions.
-                        </p>
-                        <div class="hero-buttons animate-slide-up">
-                            <a href="services.html#corporate" class="btn btn-primary btn-animated">Corporate Services</a>
-                            <a href="contact.html" class="btn btn-secondary btn-animated">Get Started</a>
-                        </div>
-                        <div class="hero-stats animate-stats">
-                            <div class="stat-item">
-                                <span class="stat-icon"><i class="fas fa-briefcase"></i></span>
-                                <span class="stat-number">200+</span>
-                                <span class="stat-label">Corporate Deals</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon"><i class="fas fa-chart-line"></i></span>
-                                <span class="stat-number">98%</span>
-                                <span class="stat-label">Success Rate</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon"><i class="fas fa-users"></i></span>
-                                <span class="stat-number">15+</span>
-                                <span class="stat-label">Expert Lawyers</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <style>
+        /* Service icon styles */
+        .service-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.75rem;
+            background-color: #ffffff;
+            color: #b88b4a;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .service-icon-wrapper:hover {
+            background-color: #b88b4a;
+            color: #ffffff;
+            border-color: #b88b4a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(184, 139, 74, 0.3);
+        }
 
-            <!-- Slide 3 -->
-            <div class="hero-slide">
-                <div class="hero-background hero-bg-3">
-                    <div class="hero-particles"></div>
-                    <div class="hero-overlay"></div>
-                </div>
-                <div class="container">
-                    <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-                        <h1 class="hero-title">
-                            <span class="title-main animate-text">Trusted Legal Partners</span>
-                            <span class="title-sub animate-text-delay">Committed to Your Success Since 1998</span>
-                        </h1>
-                        <p class="hero-description animate-fade-in">
-                            Building lasting relationships through integrity, expertise, and unwavering dedication. 
-                            Experience the difference that true legal partnership makes in achieving your goals.
-                        </p>
-                        <div class="hero-buttons animate-slide-up">
-                            <a href="about.html" class="btn btn-primary btn-animated">About Our Firm</a>
-                            <a href="contact.html" class="btn btn-secondary btn-animated">Schedule Meeting</a>
-                        </div>
-                        <div class="hero-stats animate-stats">
-                            <div class="stat-item">
-                                <span class="stat-icon"><i class="fas fa-trophy"></i></span>
-                                <span class="stat-number">45+</span>
-                                <span class="stat-label">Awards Won</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon"><i class="fas fa-globe"></i></span>
-                                <span class="stat-number">30+</span>
-                                <span class="stat-label">Countries Served</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon"><i class="fas fa-star"></i></span>
-                                <span class="stat-number">5.0</span>
-                                <span class="stat-label">Client Rating</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slider Navigation -->
-        <div class="hero-slider-nav">
-            <button class="hero-nav-btn hero-prev" aria-label="Previous slide">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <div class="hero-slider-dots">
-                <span class="hero-dot active" data-slide="0"></span>
-                <span class="hero-dot" data-slide="1"></span>
-                <span class="hero-dot" data-slide="2"></span>
-            </div>
-            <button class="hero-nav-btn hero-next" aria-label="Next slide">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <div class="scroll-icon">
-                <div class="scroll-wheel"></div>
-            </div>
-            <span class="scroll-text">Scroll to explore</span>
-        </div>
-    </section>
+        /* Service list items */
+        .service-list-item {
+            display: flex;
+            align-items: center;
+            padding: 0.875rem 0;
+            border-bottom: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+            width: 100%;
+        }
+        .service-list-item:hover {
+            color: #b88b4a;
+            padding-left: 0.75rem;
+        }
+        .service-list-item:last-child {
+            border-bottom: none;
+        }
+        .service-list-item span {
+            flex: 1;
+        }
+        
+        /* Hero section enhancements */
+        main {
+            background: linear-gradient(to bottom, #ffffff 0%, #faf9f7 100%);
+        }
+        
+        /* Enhanced shadow and depth */
+        .shadow-3xl {
+            box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Enhanced button hover effects */
+        .bg-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(184, 139, 74, 0.4);
+        }
+        
+        /* Image animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .hero-statue-img {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
 
     <!-- Services Preview -->
-    <section class="services-preview section">
+    <section id="services" class="services-preview section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2 class="section-title">Our Legal Expertise</h2>
@@ -334,9 +434,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="container">
             <div class="about-content">
                 <div class="about-text" data-aos="fade-right">
-                    <h2 class="section-title">Why Choose MRM Advocates?</h2>
+                    <h2 class="section-title">Why Choose Mohamed Rama Mursal LLP?</h2>
                     <p class="about-description">
-                        For over two decades, MRM Advocates LLP has been at the forefront of legal excellence in Kenya. 
+                        For over a decade, Mohamed Rama Mursal LLP has been at the forefront of legal excellence in Kenya. 
                         Our founding partners - Mohamed, Rama, and Mursal - established the firm with a vision to provide 
                         world-class legal services that combine deep local knowledge with international standards.
                     </p>
@@ -358,11 +458,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <span>Transparent Communication</span>
                         </div>
                     </div>
-                    <a href="about.html" class="btn btn-primary">Learn More About Us</a>
+                    <a href="aboutus.html" class="btn btn-primary">Learn More About Us</a>
                 </div>
                 <div class="about-image" data-aos="fade-left">
                     <div class="image-container">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MRM Advocates Team">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mohamed Rama Mursal LLP Team">
                         <div class="image-overlay">
                             <div class="play-button">
                                 <i class="fas fa-play"></i>
@@ -395,7 +495,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <i class="fas fa-star"></i>
                         </div>
                         <p class="testimonial-text">
-                            "MRM Advocates provided exceptional legal representation during our company's merger. 
+                            "Mohamed Rama Mursal LLP provided exceptional legal representation during our company's merger. 
                             Their expertise and attention to detail ensured a smooth transaction. Highly recommended!"
                         </p>
                         <div class="testimonial-author">
@@ -417,7 +517,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <i class="fas fa-star"></i>
                         </div>
                         <p class="testimonial-text">
-                            "The team at MRM Advocates handled my property dispute with professionalism and expertise. 
+                            "The team at Mohamed Rama Mursal LLP handled my property dispute with professionalism and expertise. 
                             They kept me informed throughout the process and achieved an excellent outcome."
                         </p>
                         <div class="testimonial-author">
@@ -439,7 +539,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <i class="fas fa-star"></i>
                         </div>
                         <p class="testimonial-text">
-                            "Outstanding legal services! MRM Advocates helped us navigate complex employment law issues 
+                            "Outstanding legal services! Mohamed Rama Mursal LLP helped us navigate complex employment law issues 
                             with clarity and confidence. Their strategic approach saved us significant costs."
                         </p>
                         <div class="testimonial-author">
@@ -474,7 +574,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="cta-content" data-aos="fade-up">
                 <h2 class="cta-title">Ready to Get Started?</h2>
                 <p class="cta-description">
-                    Contact MRM Advocates today for a consultation. Let us help you navigate your legal challenges 
+                    Contact Mohamed Rama Mursal LLP today for a consultation. Let us help you navigate your legal challenges 
                     with confidence and achieve the best possible outcomes.
                 </p>
                 <div class="cta-buttons">
@@ -500,8 +600,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="assets/mrm-logo.png" alt="MRM Advocates Logo" class="footer-logo-img">
-                        <span class="footer-logo-text">MRM Advocates LLP</span>
+                        <img src="assets/mrm-logo.png" alt="Mohamed Rama Mursal LLP Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">Mohamed Rama Mursal LLP</span>
                     </div>
                     <p class="footer-description">
                         Delivering exceptional legal services with integrity, precision, and unwavering dedication 
@@ -519,7 +619,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <h3 class="footer-title">Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
                         <li><a href="services.html">Our Services</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -542,11 +642,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="contact-details">
                         <div class="contact-detail">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Westlands Business Park, Nairobi, Kenya<br>P.O. Box 00610-00100</span>
+                            <span>Westlands Business Park, Nairobi, Kenya<br>P.O. Box 67718-00100</span>
                         </div>
                         <div class="contact-detail">
                             <i class="fas fa-phone"></i>
-                            <span>+254 20 722 3712</span>
+                            <span>+254 702 929 018</span>
                         </div>
                         <div class="contact-detail">
                             <i class="fas fa-envelope"></i>
@@ -563,7 +663,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
                     <p class="copyright">
-                        © 2024 MRM Advocates LLP. All rights reserved.
+                        © 2024 Mohamed Rama Mursal LLP. All rights reserved.
                     </p>
                     <div class="footer-bottom-links">
                         <a href="#privacy">Privacy Policy</a>

@@ -1,7 +1,7 @@
 {
   "name": "mrm-advocates-website",
   "version": "1.0.0",
-  "description": "MRM Advocates LLP Website with Zoho CRM Integration",
+  "description": "Mohamed Rama Mursal LLP Website (Formspree contact form)",
   "scripts": {
     "build": "echo 'No build step required'"
   },

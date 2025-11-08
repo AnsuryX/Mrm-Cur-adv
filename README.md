@@ -1,6 +1,6 @@
-# MRM Advocates LLP - Premium Law Firm Website
+# Mohamed Rama Mursal LLP - Premium Law Firm Website
 
-A sophisticated, professional website for MRM Advocates LLP (Mohamed, Rama & Mursal) - Kenya's premier law firm. This website represents $10,000+ level development quality with modern design, advanced functionality, and exceptional user experience.
+A sophisticated, professional website for Mohamed Rama Mursal LLP (Mohamed, Rama & Mursal) - Kenya's premier law firm. This website represents $10,000+ level development quality with modern design, advanced functionality, and exceptional user experience.
 
 ## 🌟 Current Features
 
@@ -239,6 +239,6 @@ This website delivers exceptional value through:
 
 ---
 
-**MRM Advocates LLP Website** - Premium legal services deserve premium web presence. This website establishes your firm as the leading choice for legal representation in Kenya.
+**Mohamed Rama Mursal LLP Website** - Premium legal services deserve premium web presence. This website establishes your firm as the leading choice for legal representation in Kenya.
 
 *Built with excellence • Designed for success • Optimized for growth*

@@ -1,4 +1,4 @@
-# MRM Advocates Logo
+# Mohamed Rama Mursal LLP Logo
 
 Please upload your logo file to this assets directory and name it `mrm-logo.png` to replace the placeholder references throughout the website.
 

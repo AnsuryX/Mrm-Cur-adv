@@ -1,0 +1,70 @@
+/* Homepage-specific styles to match provided design image
+   - Serif headline (Playfair), Inter body
+   - Gold accent, muted ivory background
+   - Centered nav, call button top-right
+   - Left headline + right statue/media layout
+*/
+
+:root{
+  --accent-gold:#b5893b; /* warm gold */
+  --muted-ivory:#faf7f3;
+  --hero-text:#1e1e1e;
+  --muted:#6b6b6b;
+}
+
+body { background: var(--muted-ivory); }
+
+/* Navigation tweaks */
+.nav-top { display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
+.nav-left .nav-logo { display:flex; align-items:center; gap:10px; }
+.nav-logo img.logo-img{ height:36px; width:auto; }
+.logo-text { font-weight:600; color:var(--hero-text); }
+
+.nav-center { display:flex; gap:28px; align-items:center; justify-content:center; }
+.nav-center .nav-link { color:var(--hero-text); text-decoration:none; font-weight:500; }
+.nav-right .btn-call { background:#222; color:#fff; padding:10px 16px; border-radius:28px; text-decoration:none; }
+
+/* Hero layout */
+.home-hero { padding:48px 0 80px; }
+.home-hero-inner { display:grid; grid-template-columns: 1fr 540px; gap:40px; align-items:center; }
+
+.hero-copy .hero-eyebrow{ font-size:18px; color:var(--muted); margin:0 0 6px 0; font-weight:600; text-transform:none; }
+.hero-title { font-family:'Playfair Display', serif; font-size:72px; line-height:0.98; color:var(--hero-text); margin:0 0 18px 0; letter-spacing:-1px; }
+.hero-title .accent{ color:var(--accent-gold); }
+.hero-sub { color:var(--muted); font-size:16px; max-width:560px; }
+
+.hero-actions { margin-top:22px; display:flex; gap:16px; align-items:center; }
+.btn-primary { background:var(--accent-gold); color:#fff; padding:12px 18px; border-radius:28px; text-decoration:none; }
+.link-ghost { color:var(--hero-text); text-decoration:none; font-weight:600; }
+
+.hero-logos { margin-top:28px; display:flex; gap:20px; opacity:0.9; }
+.hero-logos img{ height:28px; opacity:0.8; }
+
+/* media side */
+.hero-media { position:relative; }
+.hero-statue { height:620px; background-image: url('../assets/Design.jpeg'); /* Windows is case-insensitive but use actual filename */ background-size: contain; background-position: center right; background-repeat:no-repeat; border-radius:18px; box-shadow: 0 18px 40px rgba(20,20,20,0.14); border:6px solid rgba(181,137,59,0.08); }
+
+.hero-side { position:absolute; right:-16px; top:18px; width:220px; background:transparent; }
+
+/* Subtle page frame like the design: rounded corners and thin gold border for the hero area */
+.home-hero { border-radius:18px; border-top:6px solid var(--accent-gold); box-shadow: 0 10px 30px rgba(20,20,20,0.06); overflow:visible; }
+.service-list { list-style:none; padding:0; margin:0 0 22px 0; color:var(--hero-text); }
+.service-list li{ padding:10px 0; color:var(--muted); display:flex; gap:10px; align-items:center; }
+.icon-circle{ display:inline-flex; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.9); align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+
+.hero-numbers{ display:flex; gap:18px; margin-top:18px; }
+.hero-numbers .num{ text-align:left; }
+.hero-numbers .big{ font-size:28px; font-weight:800; color:var(--hero-text); }
+.hero-numbers .label{ color:var(--muted); font-size:12px; }
+
+/* Responsive */
+@media (max-width: 1000px){
+  .home-hero-inner{ grid-template-columns:1fr; }
+  .hero-statue{ height:420px; background-position:center top; }
+  .hero-title{ font-size:42px; }
+}
+@media (max-width:520px){
+  .hero-title{ font-size:30px; }
+  .nav-center{ display:none; }
+  .hero-statue{ height:300px; }
+}
