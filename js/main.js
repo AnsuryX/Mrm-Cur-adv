@@ -435,7 +435,8 @@ function initializeContactForm() {
     if (!contactForm) return;
     
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+        // Don't prevent default form submission
+        // This will allow the form to submit normally to Formspree
         
         // Get form data
         const formData = new FormData(contactForm);
