@@ -66,6 +66,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <!-- Google Calendar Appointment Scheduling -->
+    <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+    <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
@@ -100,9 +104,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <a href="tel:+254702929018" class="text-gray-700 hover:text-accent transition-colors">
                         <i class="fas fa-phone mr-2"></i>+254 702 929 018
                     </a>
-                    <a href="https://outlook.office.com/book/NewClientBooking@mrmadvocates.co.ke/?ismsaljsauthenabled" class="bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                    <button id="header-book-btn" class="bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
                         Book Consultation
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -124,9 +128,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <a href="tel:+254702929018" class="block text-gray-700 hover:text-accent transition-colors py-2">
                         <i class="fas fa-phone mr-2"></i>+254 702 929 018
                     </a>
-                    <a href="https://outlook.office.com/book/NewClientBooking@mrmadvocates.co.ke/?ismsaljsauthenabled" class="inline-block bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                    <button id="header-book-btn" class="inline-block bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
                         Book Consultation
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -174,6 +178,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         })();
     </script>
 
+    <!-- Google Calendar Popup Initializer -->
+    <script>
+    (function() {
+      function initializeBookingButtons() {
+        var buttons = document.querySelectorAll('#header-book-btn');
+        buttons.forEach(function(btn) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Create a temporary target element for the popup
+            var target = document.createElement('div');
+            target.id = 'calendar-popup-' + Date.now();
+            document.body.appendChild(target);
+            
+            // Load the calendar popup
+            if (window.calendar && window.calendar.schedulingButton) {
+              calendar.schedulingButton.load({
+                url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0yC3NBKEg6L7-uNlhwo9dGBvmVCtVN6LI4pINJOwsYWMcwO-hhRRTOtplM76FGme27upFtSzSP?gv=true',
+                color: '#b88b4a',
+                label: 'Book an appointment',
+                target: target,
+              });
+            }
+          });
+        });
+      }
+      
+      // Wait for Google Calendar script to load
+      function checkAndInit() {
+        if (window.calendar && window.calendar.schedulingButton) {
+          initializeBookingButtons();
+        } else {
+          // Try again if Google Calendar script hasn't loaded yet
+          setTimeout(checkAndInit, 500);
+        }
+      }
+      
+      // Start checking after DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          setTimeout(checkAndInit, 500);
+        });
+      } else {
+        setTimeout(checkAndInit, 500);
+      }
+    })();
+    </script>
+
     <!-- Hero Section -->
     <main class="relative overflow-hidden bg-gradient-to-b from-white via-white to-gray-100">
         <section class="pt-28 pb-12 lg:pt-44 lg:pb-20">
@@ -192,11 +243,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </p>
 
                         <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                            <a href="tel:+254702929018" class="inline-flex items-center gap-3 rounded-full bg-accent text-white px-6 py-3 font-semibold shadow hover:opacity-95">
+                            <a href="booking.html" class="inline-flex items-center gap-3 rounded-full bg-accent text-white px-6 py-3 font-semibold shadow hover:opacity-95">
                                 <i class="fas fa-phone"></i>
                                 Call +254 702 929 018
                             </a>
-                            <a href="https://outlook.office.com/book/NewClientBooking@mrmadvocates.co.ke/?ismsaljsauthenabled" class="inline-flex items-center gap-3 rounded-full border border-gray-200 px-6 py-3 font-semibold hover:bg-gray-50">
+                            <a href="booking.html" class="inline-flex items-center gap-3 rounded-full border border-gray-200 px-6 py-3 font-semibold hover:bg-gray-50">
                                 <i class="fas fa-calendar-check text-accent"></i>
                                 Book Consultation
                             </a>
@@ -270,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </section>
 
-        <!-- Contact Form Section -->
+        <!-- Booking Section with Google Calendar Scheduling -->
         <section id="consultation" class="py-24 bg-gray-50">
             <div class="mx-auto max-w-7xl px-6 lg:px-8 grid gap-12 lg:grid-cols-12 items-start">
                 <div class="lg:col-span-5" data-aos="fade-right">
@@ -278,101 +329,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <i class="fas fa-calendar-check"></i>
                         Schedule a Consultation
                     </span>
-                    <h2 class="mt-4 text-3xl md:text-4xl font-bold text-gray-900">Tell Us About Your Matter</h2>
+                    <h2 class="mt-4 text-3xl md:text-4xl font-bold text-gray-900">Book Your Time With Our Team</h2>
                     <p class="mt-4 text-gray-600">
-                        Complete the form and our intake team will contact you within one business day to arrange a meeting with the most suitable partner or associate.
+                        Choose a time that works for you. Our partners and associates are available for in-person, virtual, and on-site consultations. Pick a slot from the calendar and we'll send you confirmation and meeting details.
                     </p>
                     <ul class="mt-8 space-y-4 text-gray-700">
-                        <li class="flex items-start gap-3"><i class="fas fa-check text-accent mt-1"></i><span>All information is protected by attorney-client privilege and handled with discretion.</span></li>
-                        <li class="flex items-start gap-3"><i class="fas fa-check text-accent mt-1"></i><span>You may request in-person, virtual, or on-site consultations.</span></li>
-                        <li class="flex items-start gap-3"><i class="fas fa-check text-accent mt-1"></i><span>For urgent or time-sensitive matters, mark the urgency field accordingly.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-accent mt-1"></i><span>Real-time availability synced with our office calendar.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-accent mt-1"></i><span>Automatic confirmation email sent to you within seconds.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-accent mt-1"></i><span>For urgent matters, call us directly at +254 702 929 018.</span></li>
                     </ul>
+
+                    <div class="mt-8 rounded-2xl bg-accent/10 border border-accent/20 p-6">
+                        <p class="text-sm text-gray-700"><strong>Prefer to email first?</strong> You can also reach us at <a href="mailto:info@mrmadvocates.co.ke" class="text-accent font-semibold underline">info@mrmadvocates.co.ke</a> with your initial inquiry.</p>
+                    </div>
                 </div>
 
                 <div class="lg:col-span-7" data-aos="fade-left">
-                    <div class="rounded-3xl bg-white p-8 shadow-2xl border border-gray-100">
-                        <form id="contactForm" action="https://formspree.io/f/manlrprn" method="POST" class="space-y-6">
-                            <!-- When Formspree accepts the submission it will redirect to this URL -->
-                            <input type="hidden" name="_next" value="https://mrm-advocates.netlify.app/thank-you.html">
-                            <div class="grid gap-6 md:grid-cols-2">
-                                <div>
-                                    <label for="firstName" class="block text-sm font-semibold text-gray-700">First Name *</label>
-                                    <input type="text" id="firstName" name="firstName" required class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 focus:border-accent focus:bg-white focus:outline-none">
-                                </div>
-                                <div>
-                                    <label for="lastName" class="block text-sm font-semibold text-gray-700">Last Name *</label>
-                                    <input type="text" id="lastName" name="lastName" required class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 focus:border-accent focus:bg-white focus:outline-none">
-                                </div>
-                            </div>
-
-                            <div class="grid gap-6 md:grid-cols-2">
-                                <div>
-                                    <label for="email" class="block text-sm font-semibold text-gray-700">Email Address *</label>
-                                    <input type="email" id="email" name="email" required class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 focus:border-accent focus:bg-white focus:outline-none">
-                                </div>
-                                <div>
-                                    <label for="phone" class="block text-sm font-semibold text-gray-700">Phone Number</label>
-                                    <input type="tel" id="phone" name="phone" class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 focus:border-accent focus:bg-white focus:outline-none">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="company" class="block text-sm font-semibold text-gray-700">Company / Organisation</label>
-                                <input type="text" id="company" name="company" class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 focus:border-accent focus:bg-white focus:outline-none">
-                            </div>
-
-                            <div class="grid gap-6 md:grid-cols-2">
-                                <div>
-                                    <label for="service" class="block text-sm font-semibold text-gray-700">Legal Service Needed *</label>
-                                    <select id="service" name="service" required class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 focus:border-accent focus:bg-white focus:outline-none">
-                                        <option value="">Select a service</option>
-                                        <option value="corporate">Corporate & Commercial Law</option>
-                                        <option value="litigation">Litigation & Dispute Resolution</option>
-                                        <option value="real-estate">Real Estate & Property Law</option>
-                                        <option value="employment">Employment & Labour Law</option>
-                                        <option value="criminal">Criminal Defense</option>
-                                        <option value="family">Family & Private Client</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="urgency" class="block text-sm font-semibold text-gray-700">Urgency Level</label>
-                                    <select id="urgency" name="urgency" class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 focus:border-accent focus:bg-white focus:outline-none">
-                                        <option value="standard">Standard (within 48 hours)</option>
-                                        <option value="urgent">Urgent (within 24 hours)</option>
-                                        <option value="emergency">Emergency (same day)</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="subject" class="block text-sm font-semibold text-gray-700">Subject *</label>
-                                <input type="text" id="subject" name="subject" required placeholder="Brief summary of your legal matter" class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 focus:border-accent focus:bg-white focus:outline-none">
-                            </div>
-
-                            <div>
-                                <label for="message" class="block text-sm font-semibold text-gray-700">Message *</label>
-                                <textarea id="message" name="message" rows="5" required placeholder="Share the context, key dates, and desired outcomes..." class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 focus:border-accent focus:bg-white focus:outline-none"></textarea>
-                            </div>
-
-                            <div class="space-y-3 text-sm text-gray-600">
-                                <label class="flex items-start gap-3">
-                                    <input type="checkbox" id="consent" name="consent" required class="mt-1 rounded border-gray-300 text-accent focus:ring-accent">
-                                    <span>I agree to the <a href="#privacy" class="text-accent underline">Privacy Policy</a> and consent to being contacted about my enquiry.</span>
-                                </label>
-                                <label class="flex items-start gap-3">
-                                    <input type="checkbox" id="newsletter" name="newsletter" class="mt-1 rounded border-gray-300 text-accent focus:ring-accent">
-                                    <span>I would like to receive legal updates and firm insights via email.</span>
-                                </label>
-                            </div>
-
-                            <button type="submit" class="w-full rounded-xl bg-accent px-6 py-4 text-lg font-semibold text-white transition-colors hover:bg-accent/90 flex items-center justify-center gap-3">
-                                <i class="fas fa-paper-plane"></i>
-                                Send Secure Message
-                            </button>
-
-                            <p class="text-sm text-gray-500"><i class="fas fa-shield-alt mr-2 text-accent"></i>All communications are confidential and protected by attorney-client privilege.</p>
-                        </form>
+                    <div class="rounded-3xl bg-white shadow-2xl border border-gray-100 overflow-hidden">
+                        <!-- Google Calendar Appointment Scheduling begin -->
+                        <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0yC3NBKEg6L7-uNlhwo9dGBvmVCtVN6LI4pINJOwsYWMcwO-hhRRTOtplM76FGme27upFtSzSP?gv=true" style="border: 0" width="100%" height="600" frameborder="0"></iframe>
+                        <!-- end Google Calendar Appointment Scheduling -->
                     </div>
                 </div>
             </div>

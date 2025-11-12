@@ -5,7 +5,9 @@
   "scripts": {
     "build": "echo 'No build step required'"
   },
-  "dependencies": {},
+  "dependencies": {
+    "googleapis": "^117.0.0"
+  },
   "devDependencies": {}
 }
 
