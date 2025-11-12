@@ -9,9 +9,5 @@
   node_bundler = "esbuild"
   included_files = ["netlify/functions/**"]
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
+# No catch-all redirect needed for static site
 

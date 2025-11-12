@@ -181,46 +181,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Google Calendar Popup Initializer -->
     <script>
     (function() {
+      var maxRetries = 20; // Try for up to 10 seconds
+      var retryCount = 0;
+      
       function initializeBookingButtons() {
-        var buttons = document.querySelectorAll('#header-book-btn');
+        var buttons = document.querySelectorAll('#header-book-btn, [data-booking-btn]');
+        
         buttons.forEach(function(btn) {
-          btn.addEventListener('click', function(e) {
+          // Remove any existing listeners to avoid duplicates
+          var newBtn = btn.cloneNode(true);
+          btn.parentNode.replaceChild(newBtn, btn);
+          
+          newBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            // Create a temporary target element for the popup
-            var target = document.createElement('div');
-            target.id = 'calendar-popup-' + Date.now();
-            document.body.appendChild(target);
+            e.stopPropagation();
             
-            // Load the calendar popup
+            console.log('Booking button clicked');
+            
+            // Check if Google Calendar API is available
             if (window.calendar && window.calendar.schedulingButton) {
-              calendar.schedulingButton.load({
-                url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0yC3NBKEg6L7-uNlhwo9dGBvmVCtVN6LI4pINJOwsYWMcwO-hhRRTOtplM76FGme27upFtSzSP?gv=true',
-                color: '#b88b4a',
-                label: 'Book an appointment',
-                target: target,
-              });
+              console.log('Google Calendar API found, opening popup...');
+              
+              // Open the popup directly
+              try {
+                window.open(
+                  'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0yC3NBKEg6L7-uNlhwo9dGBvmVCtVN6LI4pINJOwsYWMcwO-hhRRTOtplM76FGme27upFtSzSP?gv=true',
+                  'googleCalendar',
+                  'width=800,height=600,scrollbars=yes,resizable=yes'
+                );
+              } catch (error) {
+                console.error('Error opening calendar:', error);
+                // Fallback: direct navigation
+                window.location.href = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0yC3NBKEg6L7-uNlhwo9dGBvmVCtVN6LI4pINJOwsYWMcwO-hhRRTOtplM76FGme27upFtSzSP?gv=true';
+              }
+            } else {
+              console.warn('Google Calendar API not loaded, using fallback...');
+              // Fallback: open in new tab
+              window.open(
+                'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0yC3NBKEg6L7-uNlhwo9dGBvmVCtVN6LI4pINJOwsYWMcwO-hhRRTOtplM76FGme27upFtSzSP?gv=true',
+                '_blank'
+              );
             }
           });
         });
+        
+        console.log('Booking buttons initialized:', buttons.length);
       }
       
       // Wait for Google Calendar script to load
       function checkAndInit() {
+        retryCount++;
+        
         if (window.calendar && window.calendar.schedulingButton) {
+          console.log('Google Calendar API loaded successfully');
           initializeBookingButtons();
-        } else {
+        } else if (retryCount < maxRetries) {
           // Try again if Google Calendar script hasn't loaded yet
           setTimeout(checkAndInit, 500);
+        } else {
+          // Max retries reached, initialize anyway with fallback
+          console.warn('Google Calendar API not loaded after max retries, using fallback');
+          initializeBookingButtons();
         }
       }
       
       // Start checking after DOM is ready
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
-          setTimeout(checkAndInit, 500);
+          setTimeout(checkAndInit, 100);
         });
       } else {
-        setTimeout(checkAndInit, 500);
+        setTimeout(checkAndInit, 100);
       }
     })();
     </script>

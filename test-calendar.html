@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Google Calendar Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        button {
+            background: #b88b4a;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #a07a3a;
+        }
+        .log {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Calendar Integration Test</h1>
+    <p>Click the buttons below to test different methods of opening the Google Calendar booking:</p>
+    
+    <button id="test-popup">Test Popup Method</button>
+    <button id="test-newtab">Test New Tab Method</button>
+    <button id="test-direct">Test Direct Link</button>
+    
+    <div class="log" id="log">
+        <strong>Console Log:</strong>
+    </div>
+
+    <!-- Google Calendar Appointment Scheduling -->
+    <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+    <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+
+    <script>
+        const calendarUrl = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0yC3NBKEg6L7-uNlhwo9dGBvmVCtVN6LI4pINJOwsYWMcwO-hhRRTOtplM76FGme27upFtSzSP?gv=true';
+        const logDiv = document.getElementById('log');
+        
+        function addLog(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.style.color = type === 'error' ? 'red' : type === 'success' ? 'green' : 'black';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+
+        // Check if Google Calendar API loaded
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (window.calendar && window.calendar.schedulingButton) {
+                    addLog('✓ Google Calendar API loaded successfully', 'success');
+                } else {
+                    addLog('✗ Google Calendar API not loaded', 'error');
+                }
+            }, 2000);
+        });
+
+        // Test popup method
+        document.getElementById('test-popup').addEventListener('click', function() {
+            addLog('Testing popup method...');
+            try {
+                const popup = window.open(
+                    calendarUrl,
+                    'googleCalendar',
+                    'width=800,height=600,scrollbars=yes,resizable=yes'
+                );
+                if (popup) {
+                    addLog('✓ Popup opened successfully', 'success');
+                } else {
+                    addLog('✗ Popup blocked by browser', 'error');
+                }
+            } catch (error) {
+                addLog('✗ Error: ' + error.message, 'error');
+            }
+        });
+
+        // Test new tab method
+        document.getElementById('test-newtab').addEventListener('click', function() {
+            addLog('Testing new tab method...');
+            try {
+                const tab = window.open(calendarUrl, '_blank');
+                if (tab) {
+                    addLog('✓ New tab opened successfully', 'success');
+                } else {
+                    addLog('✗ New tab blocked by browser', 'error');
+                }
+            } catch (error) {
+                addLog('✗ Error: ' + error.message, 'error');
+            }
+        });
+
+        // Test direct link
+        document.getElementById('test-direct').addEventListener('click', function() {
+            addLog('Testing direct navigation...');
+            window.location.href = calendarUrl;
+        });
+
+        addLog('Page loaded. Ready to test.');
+    </script>
+</body>
+</html>
